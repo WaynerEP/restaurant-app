@@ -1,0 +1,230 @@
+#Global Configuration
+
+# jwt configuration
+jwt:
+    signing-key: 85eb7bb6-959d-4b34-bde1-9b5e2e48af73
+    expires-time: 365d
+    buffer-time: 1d
+    issuer: RestaurantApp
+
+# zap logger configuration
+zap:
+    level: info
+    prefix: '[github.com/WaynerEP/restaurant-app/server]'
+    format: console
+    director: log
+    encode-level: LowercaseColorLevelEncoder
+    stacktrace-key: stacktrace
+    max-age: 0
+    show-line: true
+    log-in-console: true
+
+# redis configuration   
+redis:
+    db: 0
+    addr: 127.0.0.1:6379
+    password: ""
+    
+# email configuration    
+email:
+    to: xxx@qq.com
+    port: 465
+    from: xxx@163.com
+    host: smtp.163.com
+    is-ssl: true
+    secret: xxx
+    nickname: test
+
+# system configuration
+system:
+    env: local
+    addr: 8080
+    db-type: mysql
+    oss-type: local
+    use-multipoint: false
+    use-redis: false
+    iplimit-count: 15000
+    iplimit-time: 3600
+    router-prefix: /api/v1
+
+# Captcha configuration
+captcha:
+  key-long: 6 # Length of the captcha key
+  img-width: 240 # Width of the captcha image
+  img-height: 80 # Height of the captcha image
+  open-captcha: 0 # 0 means always open, greater than 0 means limiting the number of times
+  open-captcha-timeout: 3600 # Timeout for open-captcha to take effect (in seconds), applicable only when open-captcha is greater than 0
+
+# mysql connect configuration
+mysql:
+    prefix: ""
+    port: "3306"
+    config: charset=utf8mb4&parseTime=True&loc=Local
+    db-name:
+    username: root
+    password: ""
+    path: localhost
+    engine: ""
+    log-mode: error
+    max-idle-conns: 10
+    max-open-conns: 100
+    singular: false
+    log-zap: false
+
+# pgsql connect configuration
+pgsql:
+  path: ""
+  port: ""
+  config: ""
+  db-name: ""
+  username: ""
+  password: ""
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+oracle:
+  path: ""
+  port: ""
+  config: ""
+  db-name: ""
+  username: ""
+  password: ""
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+mssql:
+  path: ""
+  port: ""
+  config: ""
+  db-name: ""
+  username: ""
+  password: ""
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+sqlite:
+  path: ""
+  port: ""
+  config: ""
+  db-name: ""
+  username: ""
+  password: ""
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: ""
+  log-zap: false
+
+db-list:
+  - disable: true # Whether to disable
+    type: "" # Database type, currently supports mysql, pgsql, mssql, oracle
+    alias-name: "" # Database name, note: alias-name needs to be unique in db-list
+    path: ""
+    port: ""
+    config: ""
+    db-name: ""
+    username: ""
+    password: ""
+    max-idle-conns: 10
+    max-open-conns: 100
+    log-mode: ""
+    log-zap: false
+
+# Local configuration
+local:
+  path: uploads/file
+  store-path: uploads/file
+
+# Autocode configuration
+autocode:
+  transfer-restart: true
+  # root automatically adapts to the project root directory
+  # Please do not manually configure it; it will be recognized at project loading
+  root: ""
+  server: /server
+  server-plug: /plugin/%s
+  server-api: /api/v1/%s
+  server-initialize: /initialize
+  server-model: /model/%s
+  server-request: /model/%s/request/
+  server-router: /router/%s
+  server-service: /service/%s
+  web: /web/src
+  web-api: /api
+  web-form: /view
+  web-table: /view
+
+# Qiniu configuration (Please apply for corresponding public and private keys, bucket, and domain address from Qiniu)
+qiniu:
+  zone: ZoneHuaDong
+  bucket: ""
+  img-path: ""
+  use-https: false
+  access-key: ""
+  secret-key: ""
+  use-cdn-domains: false
+
+# Aliyun OSS configuration
+aliyun-oss:
+  endpoint: yourEndpoint
+  access-key-id: yourAccessKeyId
+  access-key-secret: yourAccessKeySecret
+  bucket-name: yourBucketName
+  bucket-url: yourBucketUrl
+  base-path: yourBasePath
+
+# Tencent COS configuration
+tencent-cos:
+  bucket: xxxxx-10005608
+  region: ap-shanghai
+  secret-id: your-secret-id
+  secret-key: your-secret-key
+  base-url: https://gin.vue.admin
+  path-prefix: github.com/flipped-aurora/gin-vue-admin/server
+
+# AWS S3 configuration (compatible with Minio)
+aws-s3:
+  bucket: xxxxx-10005608
+  region: ap-shanghai
+  endpoint: ""
+  s3-force-path-style: false
+  disable-ssl: false
+  secret-id: your-secret-id
+  secret-key: your-secret-key
+  base-url: https://gin.vue.admin
+  path-prefix: github.com/flipped-aurora/gin-vue-admin/server
+
+# Huawei OBS configuration
+hua-wei-obs:
+  path: your-path
+  bucket: your-bucket
+  endpoint: your-endpoint
+  access-key: your-access-key
+  secret-key: your-secret-key
+
+# Excel configuration
+excel:
+  dir: ./resource/excel/
+
+# CORS configuration
+# Needs to be used with `Router.Use(middleware.CorsByRules())` in server/initialize/router.go
+cors:
+  mode: strict-whitelist # Allow mode: allow-all (allow all), whitelist (whitelist mode, add CORS header to requests from domains in the whitelist), strict-whitelist (strict whitelist mode, reject all requests outside the whitelist)
+  whitelist:
+    - allow-origin: example1.com
+      allow-headers: Content-Type,AccessToken,X-CSRF-Token, Authorization, Token,X-Token,X-User-Id
+      allow-methods: POST, GET
+      expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
+      allow-credentials: true # Boolean value
+    - allow-origin: example2.com
+      allow-headers: content-type
+      allow-methods: GET, POST
+      expose-headers: Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type
+      allow-credentials: true # Boolean value
+
+# Others Apis configuration
+sunat-apis-peru:
+    secret-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDAzNDIzNjEsImV4cCI6MTcwMDQyODc2MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoiV2F5bmVyRVAifQ.S_AqH8TH7Cj4dmWC6SkUUcLRWKTnoqA5gch4ViMX33AnF1viGutdFLfGroptYgoznnL_uGYj81Fa7Cv5kJ4g3bslYCt0MrkzCV2iV1EItlUe-h3Qbu7wpge76_cJpbKg9UEy_naA7HoYJH8TQEB3iCVJd27RRpXEuCjBL_SnEHTAI_WiwscTPM4elN2c45C8jDFkSTsh2-M6MbMm-xjY_kmKVY6D34zlkJeTmcGQxkGH_26utZmmxvMi0MuKLyymlBQThsEN06tTkSeXZ3vMAeyL0YiVRcG7tm6ChF1oCX0tRNwNjUtjiV4N5J7dwnPc29d99xkSskgX5PskhQO22WKvGsD6YXm2GNVmKNwQ4t1S5VXfbKTFAB31MQkIOKgX56idmEtw7rxL68yfeFDR6Oj4t4kzHw3DVcuzEueVY8lnP9igG0P8EJO_cwZPInKuQGLs7XEaZl4M9pnoxvlPQDJs7XW5nv-EDBuRKjUPG7_qXJ-aCJhtY1Feap-Jgry5wQqIp50_8m3ft9KMCKK1b_WFdcgVoqPO_oSkmX0_HrH9lCAbzDTD5TPl8OpFB9ZXu5AaQgrTpC-FbqDHaIKkpu0BW6tHnw5gp2KAmegUmz25UtrySnPcZG30xsAhnv-IRSXDJMhOVbOYEFyEFdBn9xMBcev-ZPBujWYvjXmmolo
+    base-url: https://facturacion.apisperu.com/api/v1

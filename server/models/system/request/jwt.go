@@ -1,0 +1,23 @@
+package request
+
+import (
+	"github.com/gofrs/uuid/v5"
+	jwt "github.com/golang-jwt/jwt/v4"
+)
+
+// CustomClaims Custom claims structure
+type CustomClaims struct {
+	BaseClaims
+	BufferTime int64
+	jwt.RegisteredClaims
+}
+
+type BaseClaims struct {
+	UUID        uuid.UUID
+	ID          uint
+	Email       string
+	Username    string
+	CompanyId   uint
+	EmployeeId  uint
+	AuthorityId uint
+}
