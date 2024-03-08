@@ -7,6 +7,8 @@ import (
 	"github.com/WaynerEP/restaurant-app/server/models/menu"
 	resModel "github.com/WaynerEP/restaurant-app/server/models/menu/response"
 	"github.com/WaynerEP/restaurant-app/server/utils"
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type ItemCategoryApi struct{}
@@ -51,7 +53,7 @@ func (e *ItemCategoryApi) DeleteItemCategory(c *gin.Context) {
 	err = itemCategoryService.DeleteItemCategory(itemCategory)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)

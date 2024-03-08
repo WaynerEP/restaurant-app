@@ -27,6 +27,8 @@ func Routers() *gin.Engine {
 	contactRouter := router.AppRouterGroup.Contact
 	inventoryRouter := router.AppRouterGroup.Inventory
 	menuRouter := router.AppRouterGroup.Menu
+	reservationRouter := router.AppRouterGroup.Reservation
+	orderRouter := router.AppRouterGroup.Order
 	PublicGroup := Router.Group(global.GVA_CONFIG.System.RouterPrefix)
 	{
 		// Health check
@@ -60,6 +62,12 @@ func Routers() *gin.Engine {
 		//Menu
 		menuRouter.InitItemCatRouter(PrivateGroup)
 		menuRouter.InitItemRouter(PrivateGroup)
+		//Reservation
+		reservationRouter.InitFloorRouter(PrivateGroup)
+		reservationRouter.InitEnvRouter(PrivateGroup)
+		reservationRouter.InitTableRouter(PrivateGroup)
+		//Orders
+		orderRouter.InitMenuOrderRouter(PrivateGroup)
 	}
 
 	global.GVA_LOG.Info("router register success")

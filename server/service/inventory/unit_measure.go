@@ -8,27 +8,27 @@ import (
 
 type UnitOfMeasureService struct{}
 
-func (exa *UnitOfMeasureService) CreateUnitOfMeasure(e inventory.UnitMeasure) (err error) {
+func (s *UnitOfMeasureService) CreateUnitOfMeasure(e inventory.UnitMeasure) (err error) {
 	err = global.GVA_DB.Create(&e).Error
 	return err
 }
 
-func (exa *UnitOfMeasureService) DeleteUnitOfMeasure(e inventory.UnitMeasure) (err error) {
+func (s *UnitOfMeasureService) DeleteUnitOfMeasure(e inventory.UnitMeasure) (err error) {
 	err = global.GVA_DB.Delete(&e).Error
 	return err
 }
 
-func (exa *UnitOfMeasureService) UpdateUnitOfMeasure(e *inventory.UnitMeasure) (err error) {
+func (s *UnitOfMeasureService) UpdateUnitOfMeasure(e *inventory.UnitMeasure) (err error) {
 	err = global.GVA_DB.Save(e).Error
 	return err
 }
 
-func (exa *UnitOfMeasureService) GetUnitOfMeasure(id uint) (customer inventory.UnitMeasure, err error) {
+func (s *UnitOfMeasureService) GetUnitOfMeasure(id uint) (customer inventory.UnitMeasure, err error) {
 	err = global.GVA_DB.Where("id = ?", id).First(&customer).Error
 	return
 }
 
-func (exa *UnitOfMeasureService) GetUnitOfMeasureInfoList(info request.PageInfo) (unitMeasureList []inventory.UnitMeasure, total int64, err error) {
+func (s *UnitOfMeasureService) GetUnitOfMeasureInfoList(info request.PageInfo) (unitMeasureList []inventory.UnitMeasure, total int64, err error) {
 	limit := info.GetLimit()
 	page := info.GetPage()
 	offset := limit * (page - 1)

@@ -51,7 +51,7 @@ func (s *SystemApiApi) DeleteApi(c *gin.Context) {
 	err = apiService.DeleteApi(api)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion succeeded", c)
@@ -154,7 +154,7 @@ func (s *SystemApiApi) DeleteApisByIds(c *gin.Context) {
 	err = apiService.DeleteApisByIds(ids)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion succeeded", c)

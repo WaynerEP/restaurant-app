@@ -8,27 +8,27 @@ import (
 
 type ItemService struct{}
 
-func (exa *ItemService) CreateItem(e menu.Item) (err error) {
+func (s *ItemService) CreateItem(e menu.Item) (err error) {
 	err = global.GVA_DB.Omit("ItemCategory").Create(&e).Error
 	return err
 }
 
-func (exa *ItemService) DeleteItem(e menu.Item) (err error) {
+func (s *ItemService) DeleteItem(e menu.Item) (err error) {
 	err = global.GVA_DB.Delete(&e).Error
 	return err
 }
 
-func (exa *ItemService) UpdateItem(e *menu.Item) (err error) {
+func (s *ItemService) UpdateItem(e *menu.Item) (err error) {
 	err = global.GVA_DB.Save(e).Error
 	return err
 }
 
-func (exa *ItemService) GetItem(id uint) (item menu.Item, err error) {
+func (s *ItemService) GetItem(id uint) (item menu.Item, err error) {
 	err = global.GVA_DB.Preload("NutritionalValue").Preload("ItemCategory").First(&item, id).Error
 	return
 }
 
-func (exa *ItemService) GetItemInfoList(info request.PageInfo) (itemList []menu.Item, total int64, err error) {
+func (s *ItemService) GetItemInfoList(info request.PageInfo) (itemList []menu.Item, total int64, err error) {
 	limit := info.GetLimit()
 	page := info.GetPage()
 	offset := limit * (page - 1)

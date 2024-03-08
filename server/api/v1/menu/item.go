@@ -5,6 +5,8 @@ import (
 	"github.com/WaynerEP/restaurant-app/server/models/common/request"
 	"github.com/WaynerEP/restaurant-app/server/models/common/response"
 	resModel "github.com/WaynerEP/restaurant-app/server/models/menu/response"
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 
 	"github.com/WaynerEP/restaurant-app/server/models/menu"
 	"github.com/WaynerEP/restaurant-app/server/utils"
@@ -52,7 +54,7 @@ func (e *ItemApi) DeleteItem(c *gin.Context) {
 	err = itemService.DeleteItem(item)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)

@@ -2,28 +2,12 @@ package reservation
 
 import (
 	"github.com/WaynerEP/restaurant-app/server/models/common"
-	"time"
 )
 
 type Table struct {
 	common.ModelId
 	TableNumber string `json:"tableNumber" gorm:"size:30;not null"`
 	Description string `json:"description" gorm:"size:255"`
-	common.ModelTime
-}
-
-type FloorEnvironmentTable struct {
-	common.ModelId
-	FloorEnvironmentID uint      `json:"floorEnvironmentId" gorm:""` // ID del ambiente en el piso
-	TableID            uint      `json:"tableId" gorm:""`            // ID de la mesa
-	Table              Table     `json:"table"`
-	SpecificCapacity   int       `json:"specificCapacity" gorm:"not null;default:4"`  // Capacidad específica de la mesa en este ambiente
-	Status             string    `json:"status" gorm:"not null;default:'Disponible'"` // Estado de la mesa en este ambiente
-	Location           string    `json:"location" gorm:"size:255"`                    // Ubicación física de la mesa en el ambiente
-	ImageURL           string    `json:"imageURL" `                                   // URL de la imagen del ambiente
-	AdditionalInfo     string    `json:"additionalInfo" gorm:"type:text"`             // Información adicional sobre la mesa en este ambiente
-	LastCleanedAt      time.Time `json:"lastCleanedAt"`                               // Última vez que se limpió la mesa en este ambiente
-	common.ModelTime
 }
 
 /*Piso:

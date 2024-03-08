@@ -53,7 +53,7 @@ func (e *UnitOfMeasureApi) DeleteUnitOfMeasure(c *gin.Context) {
 	err = unitOfMeasureService.DeleteUnitOfMeasure(measure)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)

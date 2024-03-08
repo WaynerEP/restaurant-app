@@ -2,7 +2,6 @@ package system
 
 import (
 	"errors"
-	"fmt"
 	"github.com/WaynerEP/restaurant-app/server/global"
 	"github.com/WaynerEP/restaurant-app/server/models/common/request"
 	"github.com/WaynerEP/restaurant-app/server/models/system"
@@ -124,7 +123,6 @@ func (authorityService *AuthorityService) DeleteAuthority(auth *system.SysAuthor
 	if errors.Is(global.GVA_DB.Debug().Preload("Users").First(&auth).Error, gorm.ErrRecordNotFound) {
 		return errors.New("This role does not exist")
 	}
-	fmt.Print(len(auth.Users))
 	if len(auth.Users) != 0 {
 		return errors.New("This role is currently in use by users and cannot be deleted")
 	}

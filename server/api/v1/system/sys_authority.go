@@ -82,7 +82,7 @@ func (a *AuthorityApi) DeleteAuthority(c *gin.Context) {
 	// Before deleting a role, check if any users are currently using this role.
 	if err = authorityService.DeleteAuthority(&authority); err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed: "+err.Error(), c)
+		response.FailWithMessage("Error al eliminar: "+err.Error(), c)
 		return
 	}
 	_ = casbinService.FreshCasbin()

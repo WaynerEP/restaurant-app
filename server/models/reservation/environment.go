@@ -2,25 +2,29 @@ package reservation
 
 import (
 	"github.com/WaynerEP/restaurant-app/server/models/common"
+	"time"
 )
 
 type Environment struct {
 	common.ModelId
-	Name        string `json:"name" gorm:"size:50"`                // Límite de tamaño para el nombre
-	Capacity    int    `json:"capacity" gorm:"not null;default:1"` // Capacidad del ambiente
-	Description string `json:"description" gorm:"size:255"`        // Límite de tamaño para la descripción
-	common.ModelTime
+	Name        string `json:"name" gorm:"size:50;unique"`  // Límite de tamaño para el nombre
+	Description string `json:"description" gorm:"size:255"` // Límite de tamaño para la descripción
 }
 
-type FloorEnvironment struct {
+type FloorEnvironmentTable struct {
 	common.ModelId
-	FloorID                uint                    `json:"floorId" gorm:"not null"`       // ID del piso
-	EnvironmentID          uint                    `json:"environmentId" gorm:"not null"` // ID del ambiente
-	Environment            Environment             `json:"environment"`
-	TableCapacity          int                     `json:"tableCapacity" gorm:"not null;default:1"` // Capacidad total de mesas
-	Status                 string                  `json:"status" gorm:"not null;default:'Activo'"` // Estado actual del ambiente en este piso
-	Location               string                  `json:"location" gorm:"size:255"`                // Ubicación específica del ambiente en el piso
-	ImageURL               string                  `json:"imageURL"`                                // URL de la imagen del ambiente
-	FloorEnvironmentTables []FloorEnvironmentTable `json:"floor_environment_tables"`
-	common.ModelTime
+	FloorEnvironmentID uint      `json:"floorEnvironmentId" gorm:""`                  // ID del ambiente en el piso
+	TableID            uint      `json:"tableId" gorm:"not null"`                     // ID de la mesa
+	Table              Table     `json:"table"`                                       //
+	SpecificCapacity   int       `json:"specificCapacity" gorm:"not null;default:4"`  // Capacidad específica de la mesa en este ambiente
+	Status             string    `json:"status" gorm:"not null;default:'Disponible'"` // Estado de la mesa en este ambiente
+	Location           string    `json:"location" gorm:"size:255"`                    // Ubicación física de la mesa en el ambiente
+	ImageURL           string    `json:"imageURL" `                                   // URL de la imagen del ambiente
+	AdditionalInfo     string    `json:"additionalInfo" gorm:"type:text"`             // Información adicional sobre la mesa en este ambiente
+	LastCleanedAt      time.Time `json:"lastCleanedAt"`                               // Última vez que se limpió la mesa en este ambiente
+}
+
+type MenuOrderFloorEnvironmentTable struct {
+	FloorEnvironmentTableID uint `json:"-"`
+	MenuOrderID             uint `json:"-"`
 }

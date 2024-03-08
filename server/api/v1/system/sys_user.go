@@ -284,13 +284,13 @@ func (b *BaseApi) DeleteUser(c *gin.Context) {
 	}
 	jwtId := utils.GetUserID(c)
 	if jwtId == uint(reqId.ID) {
-		response.FailWithMessage("Deletion failed, auto-delete attempt failed", c)
+		response.FailWithMessage("Error al eliminar, auto-delete attempt failed", c)
 		return
 	}
 	err = userService.DeleteUser(reqId.ID)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)

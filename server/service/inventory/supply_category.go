@@ -8,27 +8,27 @@ import (
 
 type SupplyCategoryService struct{}
 
-func (exa *SupplyCategoryService) CreateSupplyCategory(e inventory.SupplyCategory) (err error) {
+func (s *SupplyCategoryService) CreateSupplyCategory(e inventory.SupplyCategory) (err error) {
 	err = global.GVA_DB.Create(&e).Error
 	return err
 }
 
-func (exa *SupplyCategoryService) DeleteSupplyCategory(e inventory.SupplyCategory) (err error) {
+func (s *SupplyCategoryService) DeleteSupplyCategory(e inventory.SupplyCategory) (err error) {
 	err = global.GVA_DB.Delete(&e).Error
 	return err
 }
 
-func (exa *SupplyCategoryService) UpdateSupplyCategory(e *inventory.SupplyCategory) (err error) {
+func (s *SupplyCategoryService) UpdateSupplyCategory(e *inventory.SupplyCategory) (err error) {
 	err = global.GVA_DB.Save(e).Error
 	return err
 }
 
-func (exa *SupplyCategoryService) GetSupplyCategory(id uint) (supplyCategory inventory.SupplyCategory, err error) {
+func (s *SupplyCategoryService) GetSupplyCategory(id uint) (supplyCategory inventory.SupplyCategory, err error) {
 	err = global.GVA_DB.Where("id = ?", id).First(&supplyCategory).Error
 	return
 }
 
-func (exa *SupplyCategoryService) GetSupplyCategoryInfoList(info request.PageInfo) (categoryList []inventory.SupplyCategory, total int64, err error) {
+func (s *SupplyCategoryService) GetSupplyCategoryInfoList(info request.PageInfo) (categoryList []inventory.SupplyCategory, total int64, err error) {
 	limit := info.GetLimit()
 	page := info.GetPage()
 	offset := limit * (page - 1)

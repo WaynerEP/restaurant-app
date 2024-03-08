@@ -41,7 +41,7 @@ func (s *OperationRecordApi) DeleteSysOperationRecord(c *gin.Context) {
 	err = operationRecordService.DeleteSysOperationRecord(sysOperationRecord)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)
@@ -57,8 +57,8 @@ func (s *OperationRecordApi) DeleteSysOperationRecordByIds(c *gin.Context) {
 	}
 	err = operationRecordService.DeleteSysOperationRecordByIds(IDS)
 	if err != nil {
-		global.GVA_LOG.Error("Batch deletion failed!", zap.Error(err))
-		response.FailWithMessage("Batch deletion failed", c)
+		global.GVA_LOG.Error("Batch Error al eliminar!", zap.Error(err))
+		response.FailWithMessage("Batch Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Batch deletion successful", c)

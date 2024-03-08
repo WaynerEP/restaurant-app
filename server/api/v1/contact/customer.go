@@ -55,7 +55,7 @@ func (e *CustomerApi) DeleteCustomer(c *gin.Context) {
 	err = customerService.DeleteCustomer(customerModel)
 	if err != nil {
 		global.GVA_LOG.Error("Deletion failed!", zap.Error(err))
-		response.FailWithMessage("Deletion failed", c)
+		response.FailWithMessage("Error al eliminar", c)
 		return
 	}
 	response.OkWithMessage("Deletion successful", c)

@@ -64,7 +64,7 @@ func (*Local) DeleteFile(key string) error {
 	p := global.GVA_CONFIG.Local.StorePath + "/" + key
 	if strings.Contains(p, global.GVA_CONFIG.Local.StorePath) {
 		if err := os.Remove(p); err != nil {
-			return errors.New("Local file deletion failed, err:" + err.Error())
+			return errors.New("Local file Error al eliminar, err:" + err.Error())
 		}
 	}
 	return nil

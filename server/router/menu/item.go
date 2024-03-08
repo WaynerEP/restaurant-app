@@ -3,6 +3,7 @@ package menu
 import (
 	v1 "github.com/WaynerEP/restaurant-app/server/api/v1"
 	"github.com/WaynerEP/restaurant-app/server/middleware"
+	"github.com/gin-gonic/gin"
 )
 
 type ItemRouter struct{}

@@ -7,7 +7,7 @@ aliyun-oss:
     base-path: yourBasePath
 autocode:
     transfer-restart: true
-    root: C:\Users\wkesp\Desktop\Proyectos Web\restaurantSystem
+    root: C:\Users\wkesp\Desktop\web-proyects\restaurant-app
     server: /server
     server-api: /api/v1/%s
     server-plug: /plugin/%s
@@ -83,10 +83,10 @@ hua-wei-obs:
     access-key: your-access-key
     secret-key: your-secret-key
 jwt:
-    signing-key: 874804c1-a5ce-4bc1-a036-f97035e50895
+    signing-key: 7a020cbc-a445-4730-b36a-08b9e5d644f5
     expires-time: 365d
     buffer-time: 1d
-    issuer: EcoSecurity
+    issuer: RestaurantApp
 local:
     path: uploads/file
     store-path: uploads/file

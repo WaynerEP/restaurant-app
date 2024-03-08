@@ -18,7 +18,7 @@ func (e *CustomerRouter) InitCustomerRouter(Router *gin.RouterGroup) {
 		customerRouter.DELETE("deleteCustomer", customerApi.DeleteCustomer) // Delete customer
 	}
 	{
-		customerRouterWithoutRecord.GET("getCustomer", customerApi.GetCustomer)      // Get individual customer information
-		customerRouterWithoutRecord.GET("customerList", customerApi.GetCustomerList) // Get customer list
+		customerRouterWithoutRecord.GET("getCustomer", customerApi.GetCustomer)         // Get individual customer information
+		customerRouterWithoutRecord.GET("getCustomerList", customerApi.GetCustomerList) // Get customer list
 	}
 }

@@ -65,7 +65,7 @@ func (o *_obs) DeleteFile(key string) error {
 	var output *obs.DeleteObjectOutput
 	output, err = client.DeleteObject(input)
 	if err != nil {
-		return errors.Wrapf(err, "Deletion failed object (%s)!, output: %v", key, output)
+		return errors.Wrapf(err, "Error al eliminar object (%s)!, output: %v", key, output)
 	}
 	return nil
 }
